@@ -9,28 +9,11 @@ from utlis_genetic import *
 
 start_state = "WOGWWORYWGOYBRRBGYRYOGOWBGBYRBOBWOBYBGRGROBRYOYWRYGGWW"
 
-p = MyRubic(Cube(start_state))
-
-moves1 = ["D","D","D", "B","U", "D", "D", "F"]
-p.make_moves(moves1, 0)
-p.fitness_1()
-print(p.cube)
-print(p.fitness)
-
-moves2 = ["D", "D", "D", "R", "R", "R", "D", "D", "D", "L", "L", "L", "U", "U", "D", "D", "D", "L"]
-p.make_moves(moves2, 1)
-p.fitness_2()
-print(p.cube)
-print(p.fitness)
-
-exit()
-
-
-
 population = [MyRubic(Cube(start_state)) for i in range(no_population)]
 
 
-selection_mode = "tournament"
+
+selection_mode = "best"
 
 stages = [0, 1, 2]
 print("start")
@@ -62,17 +45,21 @@ for stage in stages:
                     moves = cube.make_moves(moves, stage)
                     cube.moves += moves
 
-                else:
-                    print("ułozona")
+                
+                    
 
             elif stage == 2:
+                if cube.good_state3 == False:
+                    no_moves = random.randint(1, max_moves_stage2)
+
+                    moves = genrate_moves(stage2_moves, no_moves)
+                    moves = cube.make_moves(moves, stage)
+                    cube.moves += moves
+
+                else:
+                    print("ułozona")
                 pass
-                # no_moves = random.randint(1, max_moves_stage2)
-                # moves = genrate_moves(stage2_moves, no_moves)
-                # cube.moves.append(moves)
-                # make_moves(cube.cube, moves)
-                # f = fitness_3(cube)
-                # fitness_population.append(f)
+
             elif stage == 3:
                 pass
 
@@ -92,6 +79,8 @@ for stage in stages:
         parents_candiate = choose_parent(population)
         # parents = parents_candiate[0:no_parents]
         parents = selection(parents_candiate, mode=selection_mode)
+        
+        parents = sorted(parents)
         
         print(stage, parents)
         # print(parents[0].cube2str())

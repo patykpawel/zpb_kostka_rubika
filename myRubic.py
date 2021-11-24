@@ -10,7 +10,9 @@ class MyRubic():
         self.moves = []
         self.good_state1 = False
         self.good_state2 = False
+        self.good_state3 = False
         self.fitness = None
+        
     
     def __lt__(self, other):
          return self.fitness < other.fitness
@@ -18,9 +20,10 @@ class MyRubic():
     def fitness_1(self):
         cube_str = self.cube2str()
         cnt = 0
-        for i in slices_stage0:
-            if cube_str[i] not in available_colors_stage0:
-                cnt += 1
+        for idx, ss in enumerate(slices_stage0):
+            for s in ss:
+                if cube_str[s] not in available_colors_stage0[idx]:
+                    cnt += 1
         
         if cnt == 0:
             self.good_state1 = True
@@ -51,7 +54,24 @@ class MyRubic():
         self.fitness = J
 
     def fitness_3(self):
-        pass
+        cube_str = self.cube2str()
+        cnt = 0
+        for idx, ss in enumerate(slices_stage2):
+            for s in ss:
+                if cube_str[s] not in available_colors_stage2[idx]:
+                    cnt += 1
+
+        if cnt == 0:
+            self.good_state3 = True
+
+        num_of_moves = len(self.moves)
+        # J = 5 * 2 * cnt + num_of_moves
+        J = 5 * 2 * cnt 
+
+        self.fitness = J
+
+
+        
     
 
     def fitness_4(self):
