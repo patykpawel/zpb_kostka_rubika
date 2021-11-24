@@ -66,7 +66,10 @@ def selection(population, mode="tournament"):
         for i in range(no_parents):
             indexes = np.random.randint(0, len(population), 2)
             parents.append(min([population[indexes[0]], population[indexes[1]]]))
+            parents = sorted(parents)
         return parents
     
     elif mode == "best":
         return population[0: no_parents]
+
+        

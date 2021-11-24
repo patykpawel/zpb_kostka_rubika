@@ -7,16 +7,30 @@ from utlis_genetic import *
 
 
 
-start_state = state_stage0
+start_state = "WOGWWORYWGOYBRRBGYRYOGOWBGBYRBOBWOBYBGRGROBRYOYWRYGGWW"
 
+p = MyRubic(Cube(start_state))
 
+moves1 = ["D","D","D", "B","U", "D", "D", "F"]
+p.make_moves(moves1, 0)
+p.fitness_1()
+print(p.cube)
+print(p.fitness)
+
+moves2 = ["D", "D", "D", "R", "R", "R", "D", "D", "D", "L", "L", "L", "U", "U", "D", "D", "D", "L"]
+p.make_moves(moves2, 1)
+p.fitness_2()
+print(p.cube)
+print(p.fitness)
+
+exit()
 
 
 
 population = [MyRubic(Cube(start_state)) for i in range(no_population)]
 
 
-selection_mode = "best"
+selection_mode = "tournament"
 
 stages = [0, 1, 2]
 print("start")

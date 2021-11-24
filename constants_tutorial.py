@@ -38,8 +38,9 @@ max_moves_stage1 = 13
 max_moves_stage2 = 15
 max_moves_stage3 = 17
 
-stage0_moves = ["F", "R", "U", "B", "L", "D"]
-stage1_moves = ["F", "U", "B", "D", "R2", "L2"]
+# stage0_moves = ["F", "R", "U", "B", "L", "D"]
+stage0_moves = ["U", "D", "F", "B", "L", "R"]
+stage1_moves = ["U", "D", "F2", "B2", "L", "R"]
 
 stage2_moves = ["U", "D", "R2", "L2", "F2", "B2"]
 stage3_moves = ["F2", "R2", "U2", "B2", "L2", "D2"]
