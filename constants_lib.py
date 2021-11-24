@@ -1,3 +1,8 @@
+
+#ulozona kostka lib
+solved_cube = "OOOOOOOOOYYYWWWGGGBBBYYYWWWGGGBBBYYYWWWGGGBBBRRRRRRRRR"
+
+
 slices_stage0 = [1, 3, 5, 7, 24, 26, 30, 32, 46, 48, 50, 52]
 # [0, 2, 6, 8, 45, 47, 51, 53] - ['O', 'R']
 # [1, 3, 5, 7, 46, 48, 50, 52] - ['O', 'R']

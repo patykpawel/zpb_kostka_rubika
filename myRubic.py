@@ -1,6 +1,6 @@
 from rubik.cube import Cube
 
-from constants import *
+from constants_tutorial import *
 
 class MyRubic():
 

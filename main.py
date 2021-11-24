@@ -1,9 +1,10 @@
 from rubik.cube import Cube
 from myRubic import MyRubic
 from time import sleep
-from constants import *
+from constants_tutorial import *
 from copy import deepcopy
 import random
+import numpy as np
 
 
 def genrate_moves(moves, number):
@@ -23,12 +24,12 @@ def genrate_moves(moves, number):
     return end_moves
 
 
-def selection(population):
-    parents = []
-    for i in range(no_parents):
-        indexes = np.random.randint(0, len(population), 2)
-        parents.append(min([population[indexes[0]], population[indexes[1]]]))
-    return parents
+# def selection(population):
+#     parents = []
+#     for i in range(no_parents):
+#         indexes = np.random.randint(0, len(population), 2)
+#         parents.append(min([population[indexes[0]], population[indexes[1]]]))
+#     return parents
 
 
 def population_ready(population: list[MyRubic], no_stage):
@@ -67,12 +68,12 @@ def choose_parent(population:list[MyRubic]):
 
     return parents
 
-    def selection(population):
-        parents = []
-        for i in range(no_parents):
-            indexes = np.random.randint(0, len(population), 2)
-            parents.append(min([population[indexes[0]], population[indexes[1]]]))
-        return parents
+def selection(population):
+    parents = []
+    for i in range(no_parents):
+        indexes = np.random.randint(0, len(population), 2)
+        parents.append(min([population[indexes[0]], population[indexes[1]]]))
+    return parents
 
 
 state_stage0 = 'YRGGWRBYOGOWRBWBWRWGRROWOGYORYRBBGWBOBYOYBYWWYOGGYGOBR'
@@ -154,7 +155,7 @@ def run():
             
             parents_candiate = choose_parent(population)
             # parents = parents_candiate[0:no_parents]
-            parents = selection(population)
+            parents = selection(parents_candiate)
             
             print(stage, parents)
             print(parents[0].cube2str())

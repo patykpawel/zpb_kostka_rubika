@@ -1,3 +1,14 @@
+#wartości z tutoriala 
+#link https://observablehq.com/@onionhoney/how-to-model-a-rubiks-cube
+
+
+#tutorial g0 obrazek
+state_stage0 = 'YRGGWRBYOGOWRBWBWRWGRROWOGYORYRBBGWBOBYOYBYWWYOGGYGOBR'
+
+
+#tutorial g2 obrazek
+state_stage2 = "YYWYWYWWWOBGRGOGRRBGGRORGGBOROGBBORGRORBBOBOBYYYWYWYWW"
+
 slices_stage0 = [1, 3, 5, 7, 24, 26, 30, 32, 46, 48, 50, 52]
 # [0, 2, 6, 8, 45, 47, 51, 53] - ['O', 'R']
 # [1, 3, 5, 7, 46, 48, 50, 52] - ['O', 'R']
