@@ -2,12 +2,16 @@
 #link https://observablehq.com/@onionhoney/how-to-model-a-rubiks-cube
 
 
-#tutorial g0 obrazek
+#tutorial g_0 obrazek
 state_stage0 = 'YRGGWRBYOGOWRBWBWRWGRROWOGYORYRBBGWBOBYOYBYWWYOGGYGOBR'
 
 
-#tutorial g2 obrazek
+#tutorial g_2 obrazek
 state_stage2 = "YYWYWYWWWOBGRGOGRRBGGRORGGBOROGBBORGRORBBOBOBYYYWYWYWW"
+
+
+# tutorial ulozona kostka g_solved
+solved_cube = 'WWWWWWWWWOOOGGGRRRBBBOOOGGGRRRBBBOOOGGGRRRBBBYYYYYYYYY'
 
 slices_stage0 = [1, 3, 5, 7, 24, 26, 30, 32, 46, 48, 50, 52]
 # [0, 2, 6, 8, 45, 47, 51, 53] - ['O', 'R']

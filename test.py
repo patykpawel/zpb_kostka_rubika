@@ -5,17 +5,18 @@ import random
 from utlis_genetic import *
 
 
-# starte_stage = 'YRGGWRBYOGOWRBWBWRWGRROWOGYORYRBBGWBOBYOYBYWWYOGGYGOBR'
-start_state = "OOOOOOOOOYYYWWWGGGBBBYYYWWWGGGBBBYYYWWWGGGBBBRRRRRRRRR"
-xd = MyRubic(Cube(start_state))
-print(xd.cube)
-exit()
+
+
+start_state = state_stage0
 
 
 
 
-population = [MyRubic(Cube(starte_stage)) for i in range(no_population)]
 
+population = [MyRubic(Cube(start_state)) for i in range(no_population)]
+
+
+selection_mode = "best"
 
 stages = [0, 1, 2]
 print("start")
@@ -38,17 +39,14 @@ for stage in stages:
                     moves = cube.make_moves(moves, stage)
                     cube.moves += moves
 
-                    # cube.fitness_1()
-
+                    
             elif stage == 1:
                 if cube.good_state2 == False:
                     no_moves = random.randint(1, max_moves_stage1)
 
                     moves = genrate_moves(stage1_moves, no_moves)
                     moves = cube.make_moves(moves, stage)
-                    cube.moves.append(moves)
-                    
-                    
+                    cube.moves += moves
 
                 else:
                     print("ułozona")
@@ -79,10 +77,10 @@ for stage in stages:
         
         parents_candiate = choose_parent(population)
         # parents = parents_candiate[0:no_parents]
-        parents = selection(parents_candiate)
+        parents = selection(parents_candiate, mode=selection_mode)
         
         print(stage, parents)
-        print(parents[0].cube2str())
+        # print(parents[0].cube2str())
 
         # print("RUCHY ", len(parents[0].moves))
         new_population = generate_population(parents, no_population)
