@@ -1,12 +1,12 @@
-#wartości z tutoriala 
-#link https://observablehq.com/@onionhoney/how-to-model-a-rubiks-cube
+# wartości z tutoriala
+# link https://observablehq.com/@onionhoney/how-to-model-a-rubiks-cube
 
 
-#tutorial g_0 obrazek
+# tutorial g_0 obrazek
 state_stage0 = 'YRGGWRBYOGOWRBWBWRWGRROWOGYORYRBBGWBOBYOYBYWWYOGGYGOBR'
 
 
-#tutorial g_2 obrazek
+# tutorial g_2 obrazek
 state_stage2 = "YYWYWYWWWOBGRGOGRRBGGRORGGBOROGBBORGRORBBOBOBYYYWYWYWW"
 
 
@@ -18,18 +18,22 @@ slices_stage0 = [[1, 3, 5, 7, 46, 48, 50, 52], [24, 26, 30, 32]]
 # [1, 3, 5, 7, 46, 48, 50, 52] - ['O', 'R']
 # [24, 26, 30, 32] - ['W', 'B']
 
-slices_stage1 = [[0, 2, 6, 8, 45, 47, 51, 53], [1, 3, 5, 7, 46, 48, 50, 52], [24, 26, 30, 32]]
+slices_stage1 = [[0, 2, 6, 8, 45, 47, 51, 53], [
+    1, 3, 5, 7, 46, 48, 50, 52], [24, 26, 30, 32]]
 
-slices_stage2 = [[0, 2, 6, 8, 45, 47, 51, 53], [12, 13, 14, 24, 26, 36, 37, 38, 18, 19,
-                                                20, 30, 32, 42, 43, 44], [9, 10, 11, 21, 23, 33, 34, 35, 15, 16, 17, 27, 29, 39, 40, 41]]
-slices_stage3 = [1, 3, 5, 7, 24, 26, 30, 32, 46, 48, 50, 52]
-
+slices_stage2 = [[0, 2, 6, 8, 45, 47, 51, 53], [9, 11, 33, 35, 15, 17, 39, 41], [
+    12, 14, 36, 38, 18, 20, 42, 44], [10, 34, 16, 40], [13, 37, 19, 43]]
+# slices_stage2 = [[0, 2, 6, 8, 45, 47, 51, 53], [12, 13, 14, 24, 26, 36, 37, 38, 18, 19,
+# 20, 30, 32, 42, 43, 44], [9, 10, 11, 21, 23, 33, 34, 35, 15, 16, 17, 27, 29, 39, 40, 41]]
+slices_stage3 = [[0, 1, 2, 3, 5, 6, 7, 8], [9, 10, 11, 21, 23, 33, 34, 35], [12, 13, 14, 24, 26, 36, 37, 38], [45, 46, 47, 48, 50, 51, 52, 53], [15, 16, 17, 27, 29, 39, 40, 41], [18, 19, 20, 30, 32, 42, 43, 44]]
 
 available_colors_stage0 = [['W', 'Y'], ['G', 'B']]
 # available_colors_stage1 = [['O'], ['R'], ['W', 'B']]
-available_colors_stage1 = [['W', 'Y'],['W', 'Y'], ['G', 'B']]
-available_colors_stage2 = [['O', 'R'], ['W', 'B'], ['Y', 'G']]
-available_colors_stage3 = ['O', 'W', 'R', 'B']
+available_colors_stage1 = [['W', 'Y'], ['W', 'Y'], ['G', 'B']]
+available_colors_stage2 = [["W", "Y"], [
+    "O", "R"], ["G", "B"], ["O", "R"], ["G", "B"]]
+# available_colors_stage2 = [['O', 'R'], ['W', 'B'], ['Y', 'G']]
+available_colors_stage3 = [["w"], ["O"], ["G"], ["Y"], ["R"], ["B"]]
 
 
 max_moves_stage0 = 7

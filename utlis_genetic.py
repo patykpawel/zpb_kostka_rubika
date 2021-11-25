@@ -8,15 +8,12 @@ import random
 import numpy as np
 
 
-
 def genrate_moves(moves, number):
     end_moves = []
     for i in range(number):
         idx = random.randint(0, len(moves) - 1)
         end_moves.append(moves[idx])
-    
-    
-    
+
     # new_moves = []
     # for m in moves:
     #     if end_moves.count(m) % 4 == 0:
@@ -35,8 +32,15 @@ def population_ready(population: list[MyRubic], no_stage):
         elif no_stage == 1 and p.good_state2 == False:
             all_ready = False
             break
+        elif no_stage == 2 and p.good_state3 == False:
+            all_ready = False
+            break
+        elif no_stage == 3 and p.good_state4 == False:
+            all_ready = False
+            break
 
     return all_ready
+
 
 def generate_population(parents, no_population):
     children = []
@@ -47,7 +51,8 @@ def generate_population(parents, no_population):
             children.append(deepcopy(parent))
     return children
 
-def choose_parent(population:list[MyRubic]):
+
+def choose_parent(population: list[MyRubic]):
     state_list = []
     parents = []
     for p in population:
@@ -61,13 +66,15 @@ def choose_parent(population:list[MyRubic]):
 
     return parents
 
-def selection_rulette(population:List[MyRubic]):
+
+def selection_rulette(population: List[MyRubic]):
     all_fitness = [p.fitness for p in population]
     sum_fitness = sum(all_fitness) * 1.0
-    
-    propability_all = [1 - (1.0 *f / sum_fitness)   for f in all_fitness]
-    propability_all = [(1 - (1.0 *f / sum_fitness)) / sum(propability_all)  for f in all_fitness]
-    
+
+    propability_all = [1 - (1.0 * f / sum_fitness) for f in all_fitness]
+    propability_all = [(1 - (1.0 * f / sum_fitness)) /
+                       sum(propability_all) for f in all_fitness]
+
     roulette = []
     temp = 0
     for i, p in enumerate(propability_all):
@@ -80,7 +87,7 @@ def selection_rulette(population:List[MyRubic]):
 
         temp += p
     # print(propability_all[:3])
-    
+
     shots = [random.random() for i in range(no_parents)]
     parents = []
     for shot in shots:
@@ -88,30 +95,19 @@ def selection_rulette(population:List[MyRubic]):
             if val_list[0] <= shot < val_list[1]:
                 parents.append(deepcopy(population[i]))
                 break
-    
+
     return parents
-    
-    
-    
-    
 
 
-    
-
-
-def selection(population, mode="tournament" ):
+def selection(population, mode="tournament"):
     if mode == "tournament":
         parents = []
         for i in range(no_parents):
             indexes = np.random.randint(0, len(population), 2)
-            parents.append(min([population[indexes[0]], population[indexes[1]]]))
+            parents.append(
+                min([population[indexes[0]], population[indexes[1]]]))
             parents = sorted(parents)
         return parents
-    
+
     elif mode == "best":
         return population[0: no_parents]
-
-
-
-
-        
