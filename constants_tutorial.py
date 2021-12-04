@@ -3,7 +3,8 @@
 
 
 # tutorial g_0 obrazek
-state_stage0 = 'YRGGWRBYOGOWRBWBWRWGRROWOGYORYRBBGWBOBYOYBYWWYOGGYGOBR'
+# state_stage0 = 'YRGGWRBYOGOWRBWBWRWGRROWOGYORYRBBGWBOBYOYBYWWYOGGYGOBR'
+state_stage0 = "WOGWWORYWGIYBRRBGYRYOGOWBGBYRBOBWOBYBGRGROBRYOYWRYGGWW"
 
 
 # tutorial g_2 obrazek
@@ -53,5 +54,5 @@ all_moves = list(set(stage0_moves + stage1_moves +
                  stage2_moves + stage3_moves))
 
 
-no_population = 100
-no_parents = 10
+# no_population = 100
+# no_parents = 10

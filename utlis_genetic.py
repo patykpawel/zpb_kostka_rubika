@@ -42,7 +42,7 @@ def population_ready(population: list[MyRubic], no_stage):
     return all_ready
 
 
-def generate_population(parents, no_population):
+def generate_population(parents, no_population, no_parents):
     children = []
     no_children = no_population // no_parents
 
@@ -67,39 +67,39 @@ def choose_parent(population: list[MyRubic]):
     return parents
 
 
-def selection_rulette(population: List[MyRubic]):
-    all_fitness = [p.fitness for p in population]
-    sum_fitness = sum(all_fitness) * 1.0
+# def selection_rulette(population: List[MyRubic], no_parents):
+#     all_fitness = [p.fitness for p in population]
+#     sum_fitness = sum(all_fitness) * 1.0
 
-    propability_all = [1 - (1.0 * f / sum_fitness) for f in all_fitness]
-    propability_all = [(1 - (1.0 * f / sum_fitness)) /
-                       sum(propability_all) for f in all_fitness]
+#     propability_all = [1 - (1.0 * f / sum_fitness) for f in all_fitness]
+#     propability_all = [(1 - (1.0 * f / sum_fitness)) /
+#                        sum(propability_all) for f in all_fitness]
 
-    roulette = []
-    temp = 0
-    for i, p in enumerate(propability_all):
-        if i == 0:
-            roulette.append([0, p])
-        elif i == len(propability_all)-1:
-            roulette.append([temp, 1])
-        else:
-            roulette.append([temp, temp+p])
+#     roulette = []
+#     temp = 0
+#     for i, p in enumerate(propability_all):
+#         if i == 0:
+#             roulette.append([0, p])
+#         elif i == len(propability_all)-1:
+#             roulette.append([temp, 1])
+#         else:
+#             roulette.append([temp, temp+p])
 
-        temp += p
-    # print(propability_all[:3])
+#         temp += p
+#     # print(propability_all[:3])
 
-    shots = [random.random() for i in range(no_parents)]
-    parents = []
-    for shot in shots:
-        for i, val_list in enumerate(roulette):
-            if val_list[0] <= shot < val_list[1]:
-                parents.append(deepcopy(population[i]))
-                break
+#     shots = [random.random() for i in range(no_parents)]
+#     parents = []
+#     for shot in shots:
+#         for i, val_list in enumerate(roulette):
+#             if val_list[0] <= shot < val_list[1]:
+#                 parents.append(deepcopy(population[i]))
+#                 break
 
-    return parents
+#     return parents
 
 
-def selection(population, mode="tournament"):
+def selection(population, no_parents, mode="tournament"):
     if mode == "tournament":
         parents = []
         for i in range(no_parents):
@@ -111,3 +111,34 @@ def selection(population, mode="tournament"):
 
     elif mode == "best":
         return population[0: no_parents]
+
+    elif mode == "roulette":
+        all_fitness = [p.fitness for p in population]
+        sum_fitness = sum(all_fitness) * 1.0
+
+        propability_all = [1 - (1.0 * f / sum_fitness) for f in all_fitness]
+        propability_all = [(1 - (1.0 * f / sum_fitness)) /
+                        sum(propability_all) for f in all_fitness]
+
+        roulette = []
+        temp = 0
+        for i, p in enumerate(propability_all):
+            if i == 0:
+                roulette.append([0, p])
+            elif i == len(propability_all)-1:
+                roulette.append([temp, 1])
+            else:
+                roulette.append([temp, temp+p])
+
+            temp += p
+        # print(propability_all[:3])
+
+        shots = [random.random() for i in range(no_parents)]
+        parents = []
+        for shot in shots:
+            for i, val_list in enumerate(roulette):
+                if val_list[0] <= shot < val_list[1]:
+                    parents.append(deepcopy(population[i]))
+                    break
+
+        return parents
