@@ -1,5 +1,5 @@
 from rubik.cube import Cube
-
+import numpy as np
 from constants_tutorial import *
 
 
@@ -20,10 +20,10 @@ class MyRubic():
     def fitness_1(self):
         cube_str = self.cube2str()
         cnt = 0
-        for idx, ss in enumerate(slices_stage0):
-            for s in ss:
-                if cube_str[s] not in available_colors_stage0[idx]:
-                    cnt += 1
+        M = flatten(slices_stage0)
+
+        for i in range(len(M)):
+            cnt += int(cube_str[M[i]] not in available_colors_stage0[:])
 
         if cnt == 0:
             self.good_state1 = True
@@ -36,10 +36,11 @@ class MyRubic():
     def fitness_2(self):
         cube_str = self.cube2str()
         cnt = 0
-        for idx, ss in enumerate(slices_stage1):
-            for s in ss:
-                if cube_str[s] not in available_colors_stage1[idx]:
-                    cnt += 1
+
+        M = flatten(slices_stage1)
+
+        for i in range(len(M)):
+            cnt += int(cube_str[M[i]] not in available_colors_stage1[:])
 
         if cnt == 0:
             self.good_state2 = True
@@ -162,3 +163,16 @@ class MyRubic():
 
     def __repr__(self):
         return str(self.fitness)
+
+
+def flatten(nasted_list):
+    """
+    input: nasted_list - this contain any number of nested lists.
+    ------------------------
+    output: list_of_lists - one list contain all the items.
+    """
+
+    list_of_lists = []
+    for item in nasted_list:
+        list_of_lists.extend(item)
+    return list_of_lists
