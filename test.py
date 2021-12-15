@@ -7,16 +7,17 @@ from utlis_genetic import *
 
 
 start_state = "WOGWWORYWGOYBRRBGYRYOGOWBGBYRBOBWOBYBGRGROBRYOYWRYGGWW"
-start_state = state_stage2
+start_state = state_stage0
 
 
 selection_mode = "best"
 
-stages = [0,1,2, 3]
+stages = [0, 1, 2, 3, 4]
 print("start")
 max_generation = 500
 
 no_population = 100
+
 
 def run(gen):
     population = [MyRubic(Cube(start_state)) for i in range(no_population)]
@@ -79,7 +80,7 @@ def run(gen):
 
             parents = sorted(parents)
 
-            # print(gen, generation, stage, parents)
+            print(gen, generation, stage, parents)
             # print(parents[0].cube2str())
 
             # print("RUCHY ", len(parents[0].moves))

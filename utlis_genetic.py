@@ -1,6 +1,6 @@
 from typing import List
 from rubik.cube import Cube
-from myRubic import MyRubic
+from MyRubick2 import MyRubic
 from time import sleep
 from constants_tutorial import *
 from copy import deepcopy
@@ -118,7 +118,7 @@ def selection(population, no_parents, mode="tournament"):
 
         propability_all = [1 - (1.0 * f / sum_fitness) for f in all_fitness]
         propability_all = [(1 - (1.0 * f / sum_fitness)) /
-                        sum(propability_all) for f in all_fitness]
+                           sum(propability_all) for f in all_fitness]
 
         roulette = []
         temp = 0

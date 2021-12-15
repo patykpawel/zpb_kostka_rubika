@@ -1,5 +1,5 @@
 from rubik.cube import Cube
-from myRubic import MyRubic
+from MyRubick2 import MyRubic
 from time import sleep
 from constants_tutorial import *
 from utlis_genetic import *
@@ -28,9 +28,10 @@ import numpy as np
 
 # strategia mi-lambda - rozmiar populacji, rodzicow
 start_stage = state_stage0
-max_per_generation = 50
+max_per_generation = 500
 no_parents = 10
 no_population = 100
+
 
 def run(generation):
     population = [MyRubic(Cube(start_stage)) for i in range(no_population)]
@@ -77,7 +78,7 @@ def run(generation):
                         moves = cube.make_moves(moves, stage)
                         cube.moves += moves
                     else:
-                       stage = stage + 1 
+                        stage = stage + 1
                 elif stage == 4:
                     print(cube.cube)
                     print(cube.fitness)
@@ -90,7 +91,8 @@ def run(generation):
             parents = selection(parents_candiate, no_parents, mode="best")
 
             print(stage, parents, i, generation)
-            new_population = generate_population(parents, no_population, no_parents)
+            new_population = generate_population(
+                parents, no_population, no_parents)
             population = new_population
 
 

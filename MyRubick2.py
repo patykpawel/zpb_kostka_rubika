@@ -17,9 +17,8 @@ class MyRubic():
     def __lt__(self, other):
         return self.fitness < other.fitness
 
-
     def calculate_fintess(self, no_stage, mode="short"):
-        
+
         if mode == "bad":
             if no_stage == 0:
                 self.fitness_1()
@@ -29,7 +28,7 @@ class MyRubic():
                 self.fitness_3()
             elif no_stage == 3:
                 self.fitness_4()
-        
+
         elif mode == "short":
             if no_stage == 0:
                 self.fitness_dist_1()
@@ -55,50 +54,54 @@ class MyRubic():
         if face == "f":
             return orginal
         elif face == "u":
-            orientet_cube = p_f + l_f[0:3] + u_f[0:3] + r_f[0:3] + b_f[0:3] + l_f[3:6] + u_f[3:6] + r_f[3:6] + b_f[3:6] + l_f[6:9] + u_f[6:9] + r_f[6:9] + b_f[6:9] + f_f
-        elif  face == "b":
-            orientet_cube = f_f + l_f[0:3] + b_f[0:3] + r_f[0:3] + u_f[0:3] + l_f[3:6] + b_f[3:6] + r_f[3:6] + u_f[3:6] + l_f[6:9] + b_f[6:9] + r_f[6:9] + u_f[6:9] + p_f
-        elif  face == "l":
-            orientet_cube = u_f + p_f[0:3] + l_f[0:3] + f_f[0:3] + r_f[0:3] + p_f[3:6] + l_f[3:6] + f_f[3:6] + r_f[3:6] + p_f[6:9] + l_f[6:9] + f_f[6:9] + r_f[6:9] + b_f
-        elif  face == "r":
-            orientet_cube = u_f + f_f[0:3] + r_f[0:3] + p_f[0:3] + l_f[0:3] + f_f[3:6] + r_f[3:6] + p_f[3:6] + l_f[3:6] + f_f[6:9] + r_f[6:9] + p_f[6:9] + l_f[6:9] + b_f        
-        elif  face == "p":
-            orientet_cube = u_f + r_f[0:3] + p_f[0:3] + l_f[0:3] + f_f[0:3] + r_f[3:6] + p_f[3:6] + l_f[3:6] + f_f[3:6] + r_f[6:9] + p_f[6:9] + l_f[6:9] + f_f[6:9] + b_f
-            
-        
+            orientet_cube = p_f + l_f[0:3] + u_f[0:3] + r_f[0:3] + b_f[0:3] + l_f[3:6] + \
+                u_f[3:6] + r_f[3:6] + b_f[3:6] + l_f[6:9] + \
+                u_f[6:9] + r_f[6:9] + b_f[6:9] + f_f
+        elif face == "b":
+            orientet_cube = f_f + l_f[0:3] + b_f[0:3] + r_f[0:3] + u_f[0:3] + l_f[3:6] + \
+                b_f[3:6] + r_f[3:6] + u_f[3:6] + l_f[6:9] + \
+                b_f[6:9] + r_f[6:9] + u_f[6:9] + p_f
+        elif face == "l":
+            orientet_cube = u_f + p_f[0:3] + l_f[0:3] + f_f[0:3] + r_f[0:3] + p_f[3:6] + \
+                l_f[3:6] + f_f[3:6] + r_f[3:6] + p_f[6:9] + \
+                l_f[6:9] + f_f[6:9] + r_f[6:9] + b_f
+        elif face == "r":
+            orientet_cube = u_f + f_f[0:3] + r_f[0:3] + p_f[0:3] + l_f[0:3] + f_f[3:6] + \
+                r_f[3:6] + p_f[3:6] + l_f[3:6] + f_f[6:9] + \
+                r_f[6:9] + p_f[6:9] + l_f[6:9] + b_f
+        elif face == "p":
+            orientet_cube = u_f + r_f[0:3] + p_f[0:3] + l_f[0:3] + f_f[0:3] + r_f[3:6] + \
+                p_f[3:6] + l_f[3:6] + f_f[3:6] + r_f[6:9] + \
+                p_f[6:9] + l_f[6:9] + f_f[6:9] + b_f
+
         return orientet_cube
-
-
 
     def map_cube(self, centerd_cube):
 
         orginal = list(centerd_cube)
-        
+
         cube_map = np.empty((9, 12), dtype=str)
-        
-        
+
         cube_map[0:3, 0:3] = "-"
         cube_map[6:9, 0:3] = "-"
         cube_map[0:3, 6:12] = "-"
         cube_map[6:9, 6:12] = "-"
-        
-        ## up
-        cube_map[0, 3:6] = orginal[0:3] 
+
+        # up
+        cube_map[0, 3:6] = orginal[0:3]
         cube_map[1, 3:6] = orginal[3:6]
         cube_map[2, 3:6] = orginal[6:9]
         ## left, front, right, post
-        cube_map[3, 0:12] = orginal[9 : 21]
-        cube_map[4, 0:12] = orginal[21 : 33]
-        cube_map[5, 0:12] = orginal[33 : 45]
-        
-        ## bottom
-        cube_map[6, 3:6] = orginal[45:48] 
+        cube_map[3, 0:12] = orginal[9: 21]
+        cube_map[4, 0:12] = orginal[21: 33]
+        cube_map[5, 0:12] = orginal[33: 45]
+
+        # bottom
+        cube_map[6, 3:6] = orginal[45:48]
         cube_map[7, 3:6] = orginal[48:51]
         cube_map[8, 3:6] = orginal[51:54]
 
-
         return cube_map
-
 
     def translate_index(self, idx, face):
         if face == "f":
@@ -110,38 +113,36 @@ class MyRubic():
                 new_idx = idx + 21
             elif 6 <= idx < 9:
                 new_idx = idx + 30
-        elif  face == "b":
+        elif face == "b":
             if 45 <= idx < 48:
                 new_idx = idx - 33
             elif 48 <= idx < 51:
                 new_idx = idx - 24
             elif 51 <= idx < 54:
                 new_idx = idx - 15
-        elif  face == "l":
+        elif face == "l":
             if 9 <= idx < 12:
                 new_idx = idx + 3
             elif 21 <= idx < 24:
                 new_idx = idx + 3
             elif 33 <= idx < 36:
                 new_idx = idx + 3
-        elif  face == "r":
+        elif face == "r":
             if 15 <= idx < 18:
                 new_idx = idx - 3
             elif 27 <= idx < 30:
                 new_idx = idx - 3
             elif 39 <= idx < 42:
                 new_idx = idx - 3
-        elif  face == "p":
+        elif face == "p":
             if 18 <= idx < 21:
                 new_idx = idx - 6
             elif 30 <= idx < 33:
                 new_idx = idx - 6
             elif 42 <= idx < 45:
                 new_idx = idx - 6
-        
-        
+
         return new_idx
-            
 
     def translate_index_map(self, idx):
         if idx == 12:
@@ -163,41 +164,40 @@ class MyRubic():
         elif idx == 38:
             return 5, 5
 
-        
-    def euclides(self, x, y, indices_x:np.array, indices_y:np.array):
+    def euclides(self, x, y, indices_x: np.array, indices_y: np.array):
         a = np.power(x - indices_x, 2)
         b = np.power(y - indices_y, 2)
 
         return np.sqrt(a + b)
 
     def fitness_dist_1(self):
-        
+
         cube_str = self.cube2str()
         cnt = 0
         for idx, ss in enumerate(slices_stage0):
-            for s in ss:            
+            for s in ss:
                 if cube_str[s] not in available_colors_stage0[idx]:
-                    if 0 <= s < 9: # up
+                    if 0 <= s < 9:  # up
                         oriented_cube = self.center_cube("u")
                         central_face = "u"
-                    elif 9 <= s < 12 or 21 <= s < 24 or 33 <= s < 36: #left
+                    elif 9 <= s < 12 or 21 <= s < 24 or 33 <= s < 36:  # left
                         oriented_cube = self.center_cube("l")
                         central_face = "l"
-                    elif 12 <= s < 15 or 24 <= s < 27 or 36 <= s < 39: #front
+                    elif 12 <= s < 15 or 24 <= s < 27 or 36 <= s < 39:  # front
                         oriented_cube = self.center_cube("f")
                         central_face = "f"
-                    elif 15 <= s < 18 or 27 <= s < 30 or 39 <= s < 42: #right
+                    elif 15 <= s < 18 or 27 <= s < 30 or 39 <= s < 42:  # right
                         oriented_cube = self.center_cube("r")
                         central_face = "r"
-                    elif 18 <= s < 21 or 30 <= s < 33 or 42 <= s < 45: #post
+                    elif 18 <= s < 21 or 30 <= s < 33 or 42 <= s < 45:  # post
                         oriented_cube = self.center_cube("p")
                         central_face = "p"
-                    elif 45 <= s < 54: #bottom
+                    elif 45 <= s < 54:  # bottom
                         oriented_cube = self.center_cube("b")
                         central_face = "b"
                     else:
                         central_face = "f"
-                    
+
                     new_idx = self.translate_index(s, central_face)
                     cube_map = self.map_cube(oriented_cube)
                     ss_x, ss_y = self.translate_index_map(new_idx)
@@ -215,36 +215,34 @@ class MyRubic():
         self.fitness = cnt
         if cnt == 0:
             self.good_state1 = True
-        
-
 
     def fitness_dist_2(self):
         cube_str = self.cube2str()
         cnt = 0
         for idx, ss in enumerate(slices_stage1):
-            for s in ss:            
+            for s in ss:
                 if cube_str[s] not in available_colors_stage1[idx]:
-                    if 0 <= s < 9: # up
+                    if 0 <= s < 9:  # up
                         oriented_cube = self.center_cube("u")
                         central_face = "u"
-                    elif 9 <= s < 12 or 21 <= s < 24 or 33 <= s < 36: #left
+                    elif 9 <= s < 12 or 21 <= s < 24 or 33 <= s < 36:  # left
                         oriented_cube = self.center_cube("l")
                         central_face = "l"
-                    elif 12 <= s < 15 or 24 <= s < 27 or 36 <= s < 39: #front
+                    elif 12 <= s < 15 or 24 <= s < 27 or 36 <= s < 39:  # front
                         oriented_cube = self.center_cube("f")
                         central_face = "f"
-                    elif 15 <= s < 18 or 27 <= s < 30 or 39 <= s < 42: #right
+                    elif 15 <= s < 18 or 27 <= s < 30 or 39 <= s < 42:  # right
                         oriented_cube = self.center_cube("r")
                         central_face = "r"
-                    elif 18 <= s < 21 or 30 <= s < 33 or 42 <= s < 45: #post
+                    elif 18 <= s < 21 or 30 <= s < 33 or 42 <= s < 45:  # post
                         oriented_cube = self.center_cube("p")
                         central_face = "p"
-                    elif 45 <= s < 54: #bottom
+                    elif 45 <= s < 54:  # bottom
                         oriented_cube = self.center_cube("b")
                         central_face = "b"
                     else:
                         central_face = "f"
-                    
+
                     new_idx = self.translate_index(s, central_face)
                     cube_map = self.map_cube(oriented_cube)
                     ss_x, ss_y = self.translate_index_map(new_idx)
@@ -263,36 +261,33 @@ class MyRubic():
         if cnt == 0:
             self.good_state2 = True
 
-    
-
     def fitness_dist_3(self):
         cube_str = self.cube2str()
         cnt = 0
         for idx, ss in enumerate(slices_stage2):
-            for s in ss:            
+            for s in ss:
                 if cube_str[s] not in available_colors_stage2[idx]:
-                    if 0 <= s < 9: # up
+                    if 0 <= s < 9:  # up
                         oriented_cube = self.center_cube("u")
                         central_face = "u"
-                    elif 9 <= s < 12 or 21 <= s < 24 or 33 <= s < 36: #left
+                    elif 9 <= s < 12 or 21 <= s < 24 or 33 <= s < 36:  # left
                         oriented_cube = self.center_cube("l")
                         central_face = "l"
-                    elif 12 <= s < 15 or 24 <= s < 27 or 36 <= s < 39: #front
+                    elif 12 <= s < 15 or 24 <= s < 27 or 36 <= s < 39:  # front
                         oriented_cube = self.center_cube("f")
                         central_face = "f"
-                    elif 15 <= s < 18 or 27 <= s < 30 or 39 <= s < 42: #right
+                    elif 15 <= s < 18 or 27 <= s < 30 or 39 <= s < 42:  # right
                         oriented_cube = self.center_cube("r")
                         central_face = "r"
-                    elif 18 <= s < 21 or 30 <= s < 33 or 42 <= s < 45: #post
+                    elif 18 <= s < 21 or 30 <= s < 33 or 42 <= s < 45:  # post
                         oriented_cube = self.center_cube("p")
                         central_face = "p"
-                    elif 45 <= s < 54: #bottom
+                    elif 45 <= s < 54:  # bottom
                         oriented_cube = self.center_cube("b")
                         central_face = "b"
                     else:
                         central_face = "f"
-                    
-                    
+
                     new_idx = self.translate_index(s, central_face)
                     cube_map = self.map_cube(oriented_cube)
                     ss_x, ss_y = self.translate_index_map(new_idx)
@@ -310,36 +305,34 @@ class MyRubic():
         self.fitness = cnt
         if cnt == 0:
             self.good_state3 = True
-        
 
     def fitness_dist_4(self):
         cube_str = self.cube2str()
         cnt = 0
         for idx, ss in enumerate(slices_stage3):
-            for s in ss:            
+            for s in ss:
                 if cube_str[s] not in available_colors_stage3[idx]:
-                    if 0 <= s < 9: # up
+                    if 0 <= s < 9:  # up
                         oriented_cube = self.center_cube("u")
                         central_face = "u"
-                    elif 9 <= s < 12 or 21 <= s < 24 or 33 <= s < 36: #left
+                    elif 9 <= s < 12 or 21 <= s < 24 or 33 <= s < 36:  # left
                         oriented_cube = self.center_cube("l")
                         central_face = "l"
-                    elif 12 <= s < 15 or 24 <= s < 27 or 36 <= s < 39: #front
+                    elif 12 <= s < 15 or 24 <= s < 27 or 36 <= s < 39:  # front
                         oriented_cube = self.center_cube("f")
                         central_face = "f"
-                    elif 15 <= s < 18 or 27 <= s < 30 or 39 <= s < 42: #right
+                    elif 15 <= s < 18 or 27 <= s < 30 or 39 <= s < 42:  # right
                         oriented_cube = self.center_cube("r")
                         central_face = "r"
-                    elif 18 <= s < 21 or 30 <= s < 33 or 42 <= s < 45: #post
+                    elif 18 <= s < 21 or 30 <= s < 33 or 42 <= s < 45:  # post
                         oriented_cube = self.center_cube("p")
                         central_face = "p"
-                    elif 45 <= s < 54: #bottom
+                    elif 45 <= s < 54:  # bottom
                         oriented_cube = self.center_cube("b")
                         central_face = "b"
                     else:
                         central_face = "f"
-                    
-                    
+
                     new_idx = self.translate_index(s, central_face)
                     cube_map = self.map_cube(oriented_cube)
                     ss_x, ss_y = self.translate_index_map(new_idx)
@@ -485,7 +478,6 @@ class MyRubic():
             self.make_move(m)
             done_moves.append(m)
             self.calculate_fintess(stage)
-            print(self.fitness)
             # if stage == 0:
             #     self.fitness_1()
             # elif stage == 1:
