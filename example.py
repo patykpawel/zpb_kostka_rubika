@@ -1,4 +1,4 @@
-from myRubic import MyRubic
+from MyRubick2 import MyRubic
 from rubik.cube import Cube
 
 # przykład
@@ -16,20 +16,20 @@ print(p.cube)
 print("g_1")
 moves1 = ["D", "D", "D", "B", "U", "D", "D", "F"]
 p.make_moves(moves1, 0)
-p.fitness_1()
+# p.calculate_fintess(0)
 print(p.cube)
 print(p.fitness)
 print("g_2")
 moves2 = ["D", "D", "D", "R", "R", "R", "D", "D",
           "D", "L", "L", "L", "U", "U", "D", "D", "D", "L"]
 p.make_moves(moves2, 1)
-p.fitness_2()
+# p.calculate_fintess(1)
 print(p.cube)
 print(p.fitness)
 print("g_3")
 moves3 = ["U", "F", "F", "B", "B", "L", "L", "F", "F", "U", "L", "L", "D"]
 p.make_moves(moves3, 2)
-p.fitness_3()
+# p.calculate_fintess(2)
 print(p.cube)
 print(p.fitness)
 print("g_4")
@@ -37,6 +37,6 @@ print("g_4")
 #           "L", "L", "U", "U", "B", "B", "D", "D", "B", "B", "R", "R"]
 moves4 = ["L2", "R2", "F2", "L2", "U2", "L2", "U2", "B2", "D2", "B2", "R2"]
 p.make_moves(moves4, 3)
-p.fitness_4()
+# p.calculate_fintess(3)
 print(p.cube)
 print(p.fitness)

@@ -32,8 +32,7 @@ slices_stage3 = [[0, 1, 2, 3, 5, 6, 7, 8], [9, 10, 11, 21, 23, 33, 34, 35], [12,
 available_colors_stage0 = [['W', 'Y'], ['G', 'B']]
 # available_colors_stage1 = [['O'], ['R'], ['W', 'B']]
 available_colors_stage1 = [['W', 'Y'], ['W', 'Y'], ['G', 'B']]
-available_colors_stage2 = [["W", "Y"], [
-    "O", "R"], ["G", "B"], ["O", "R"], ["G", "B"]]
+available_colors_stage2 = [["W", "Y"], ["O", "R"], ["G", "B"], ["O", "R"], ["G", "B"]]
 # available_colors_stage2 = [['O', 'R'], ['W', 'B'], ['Y', 'G']]
 available_colors_stage3 = [["W"], ["O"], ["G"], ["Y"], ["R"], ["B"]]
 

@@ -1,5 +1,6 @@
 from rubik.cube import Cube
-from myRubic import MyRubic
+# from MyRubic2 import MyRubic
+from MyRubick2 import MyRubic
 from constants_tutorial import *
 import random
 from utlis_genetic import *
@@ -11,10 +12,11 @@ start_state = state_stage2
 
 selection_mode = "best"
 
-stages = [2, 3]
+stages = [0,1,2, 3]
 print("start")
 max_generation = 500
 
+no_population = 100
 
 def run(gen):
     population = [MyRubic(Cube(start_state)) for i in range(no_population)]
@@ -73,15 +75,15 @@ def run(gen):
 
             parents_candiate = choose_parent(population)
             # parents = parents_candiate[0:no_parents]
-            parents = selection(parents_candiate, mode=selection_mode)
+            parents = selection(parents_candiate, 8, mode=selection_mode)
 
             parents = sorted(parents)
 
-            print(gen, generation, stage, parents)
+            # print(gen, generation, stage, parents)
             # print(parents[0].cube2str())
 
             # print("RUCHY ", len(parents[0].moves))
-            new_population = generate_population(parents, no_population)
+            new_population = generate_population(parents, no_population, 8)
 
             population = new_population
 

@@ -104,7 +104,7 @@ def translate_index(idx, face):
         elif 39 <= idx < 42:
             new_idx = idx - 3
     elif  face == "p":
-        if 18 <= idx < 20:
+        if 18 <= idx < 21:
             new_idx = idx - 6
         elif 30 <= idx < 33:
             new_idx = idx - 6
@@ -183,34 +183,153 @@ def fitness_dist_1(cube: MyRubic):
                 y_c = np.array([y_c])
                 dist = euclides(ss_x, ss_y, x_c, y_c)
 
-                cnt += np.min(dist)
+                cnt += np.min(dist) + 1
+    
 
-            
-    print(cnt)
 
+def fitness_dist_2(cube: MyRubic):
+    cube_str = cube.cube2str()
+    cnt = 0
+    for idx, ss in enumerate(slices_stage1):
+        for s in ss:            
+            if cube_str[s] not in available_colors_stage1[idx]:
+                if 0 <= s < 9: # up
+                    oriented_cube = center_cube(cube, "u")
+                    central_face = "u"
+                elif 9 <= s < 12 or 21 <= s < 24 or 33 <= s < 36: #left
+                    oriented_cube = center_cube(cube, "l")
+                    central_face = "l"
+                elif 12 <= s < 15 or 24 <= s < 27 or 36 <= s < 39: #front
+                    oriented_cube = center_cube(cube, "f")
+                    central_face = "f"
+                elif 15 <= s < 18 or 27 <= s < 30 or 39 <= s < 42: #right
+                    oriented_cube = center_cube(cube, "r")
+                    central_face = "r"
+                elif 18 <= s < 21 or 30 <= s < 33 or 42 <= s < 45: #post
+                    oriented_cube = center_cube(cube, "p")
+                    central_face = "p"
+                elif 45 <= s < 54: #bottom
+                    oriented_cube = center_cube(cube, "b")
+                    central_face = "b"
+                else:
+                    central_face = "f"
+                
+                new_idx = translate_index(s, central_face)
+                cube_map = map_cube(oriented_cube)
+                ss_x, ss_y = translate_index_map(new_idx)
+                x_c, y_c = [], []
+                for color in available_colors_stage1[idx]:
+                    x_t, y_t = np.where(cube_map == color)
+                    x_c.extend(x_t)
+                    y_c.extend(y_t)
+
+                x_c = np.array([x_c])
+                y_c = np.array([y_c])
+                dist = euclides(ss_x, ss_y, x_c, y_c)
+
+                cnt += np.min(dist) + 1
+    
 
    
 
+def fitness_dist_3(cube: MyRubic):
+    cube_str = cube.cube2str()
+    cnt = 0
+    for idx, ss in enumerate(slices_stage2):
+        for s in ss:            
+            if cube_str[s] not in available_colors_stage2[idx]:
+                if 0 <= s < 9: # up
+                    oriented_cube = center_cube(cube, "u")
+                    central_face = "u"
+                elif 9 <= s < 12 or 21 <= s < 24 or 33 <= s < 36: #left
+                    oriented_cube = center_cube(cube, "l")
+                    central_face = "l"
+                elif 12 <= s < 15 or 24 <= s < 27 or 36 <= s < 39: #front
+                    oriented_cube = center_cube(cube, "f")
+                    central_face = "f"
+                elif 15 <= s < 18 or 27 <= s < 30 or 39 <= s < 42: #right
+                    oriented_cube = center_cube(cube, "r")
+                    central_face = "r"
+                elif 18 <= s < 21 or 30 <= s < 33 or 42 <= s < 45: #post
+                    oriented_cube = center_cube(cube, "p")
+                    central_face = "p"
+                elif 45 <= s < 54: #bottom
+                    oriented_cube = center_cube(cube, "b")
+                    central_face = "b"
+                else:
+                    central_face = "f"
+                
+                
+                new_idx = translate_index(s, central_face)
+                cube_map = map_cube(oriented_cube)
+                ss_x, ss_y = translate_index_map(new_idx)
+                x_c, y_c = [], []
+                for color in available_colors_stage2[idx]:
+                    x_t, y_t = np.where(cube_map == color)
+                    x_c.extend(x_t)
+                    y_c.extend(y_t)
+
+                x_c = np.array([x_c])
+                y_c = np.array([y_c])
+                dist = euclides(ss_x, ss_y, x_c, y_c)
+
+                cnt += np.min(dist) + 1
     
 
+def fitness_dist_4(cube: MyRubic):
+    cube_str = cube.cube2str()
+    cnt = 0
+    for idx, ss in enumerate(slices_stage3):
+        for s in ss:            
+            if cube_str[s] not in available_colors_stage3[idx]:
+                if 0 <= s < 9: # up
+                    oriented_cube = center_cube(cube, "u")
+                    central_face = "u"
+                elif 9 <= s < 12 or 21 <= s < 24 or 33 <= s < 36: #left
+                    oriented_cube = center_cube(cube, "l")
+                    central_face = "l"
+                elif 12 <= s < 15 or 24 <= s < 27 or 36 <= s < 39: #front
+                    oriented_cube = center_cube(cube, "f")
+                    central_face = "f"
+                elif 15 <= s < 18 or 27 <= s < 30 or 39 <= s < 42: #right
+                    oriented_cube = center_cube(cube, "r")
+                    central_face = "r"
+                elif 18 <= s < 21 or 30 <= s < 33 or 42 <= s < 45: #post
+                    oriented_cube = center_cube(cube, "p")
+                    central_face = "p"
+                elif 45 <= s < 54: #bottom
+                    oriented_cube = center_cube(cube, "b")
+                    central_face = "b"
+                else:
+                    central_face = "f"
+                
+                
+                new_idx = translate_index(s, central_face)
+                cube_map = map_cube(oriented_cube)
+                ss_x, ss_y = translate_index_map(new_idx)
+                x_c, y_c = [], []
+                for color in available_colors_stage3[idx]:
+                    x_t, y_t = np.where(cube_map == color)
+                    x_c.extend(x_t)
+                    y_c.extend(y_t)
+
+                x_c = np.array([x_c])
+                y_c = np.array([y_c])
+                dist = euclides(ss_x, ss_y, x_c, y_c)
+
+                cnt += np.min(dist) + 1 
     
 
 
 
-
-
-
-
-
-
-
-
-
-m = MyRubic(Cube(state_stage2))
+m = MyRubic(Cube(state_stage0))
 xd = map_cube(m.cube2str())
 m.fitness_1()
 print(m.fitness)
 fitness_dist_1(m)
+fitness_dist_2(m)
+fitness_dist_3(m)
+fitness_dist_4(m)
 
 
 
