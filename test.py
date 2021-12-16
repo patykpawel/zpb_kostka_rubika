@@ -1,6 +1,6 @@
 from rubik.cube import Cube
 # from MyRubic2 import MyRubic
-from MyRubick2 import MyRubic
+from myRubic import MyRubic
 from constants_tutorial import *
 import random
 from utlis_genetic import *

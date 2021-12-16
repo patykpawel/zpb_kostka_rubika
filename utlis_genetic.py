@@ -1,6 +1,6 @@
 from typing import List
 from rubik.cube import Cube
-from MyRubick2 import MyRubic
+from myRubic import MyRubic
 from time import sleep
 from constants_tutorial import *
 from copy import deepcopy

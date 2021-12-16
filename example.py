@@ -1,4 +1,4 @@
-from MyRubick2 import MyRubic
+from myRubic import MyRubic
 from rubik.cube import Cube
 
 # przykład
