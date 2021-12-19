@@ -38,6 +38,9 @@ def population_ready(population: 'list[MyRubic]', no_stage):
         elif no_stage == 3 and p.good_state4 == False:
             all_ready = False
             break
+        elif no_stage == 4 and p.good_state4 == True:
+            all_ready = False
+            break
 
     return all_ready
 
@@ -65,7 +68,6 @@ def choose_parent(population: 'list[MyRubic]'):
             state_list.append(p.cube2str)
 
     return parents
-
 
 # def selection_rulette(population: List[MyRubic], no_parents):
 #     all_fitness = [p.fitness for p in population]
