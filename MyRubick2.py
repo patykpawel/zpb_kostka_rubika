@@ -211,7 +211,7 @@ class MyRubic():
                     y_c = np.array([y_c])
                     dist = self.euclides(ss_x, ss_y, x_c, y_c)
 
-                    cnt += np.min(dist) * 2.5 + 1
+                    cnt += np.min(dist) + 1
         self.fitness = cnt
         if cnt == 0:
             self.good_state1 = True
@@ -256,7 +256,7 @@ class MyRubic():
                     y_c = np.array([y_c])
                     dist = self.euclides(ss_x, ss_y, x_c, y_c)
 
-                    cnt += np.min(dist) * 2.5 + 1
+                    cnt += np.min(dist) + 1
         self.fitness = cnt
         if cnt == 0:
             self.good_state2 = True
@@ -301,7 +301,7 @@ class MyRubic():
                     y_c = np.array([y_c])
                     dist = self.euclides(ss_x, ss_y, x_c, y_c)
 
-                    cnt += np.min(dist) * 2.5 + 1
+                    cnt += np.min(dist) + 1
         self.fitness = cnt
         if cnt == 0:
             self.good_state3 = True
@@ -346,7 +346,7 @@ class MyRubic():
                     y_c = np.array([y_c])
                     dist = self.euclides(ss_x, ss_y, x_c, y_c)
 
-                    cnt += np.min(dist) * 2.5 + 1
+                    cnt += np.min(dist) + 1
         self.fitness = cnt
         if cnt == 0:
             self.good_state4 = True
@@ -497,16 +497,3 @@ class MyRubic():
 
     def __repr__(self):
         return str(self.fitness)
-
-
-def flatten(nasted_list):
-    """
-    input: nasted_list - this contain any number of nested lists.
-    ------------------------
-    output: list_of_lists - one list contain all the items.
-    """
-
-    list_of_lists = []
-    for item in nasted_list:
-        list_of_lists.extend(item)
-    return list_of_lists
