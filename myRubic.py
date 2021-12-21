@@ -3,8 +3,7 @@ import numpy as np
 from constants_tutorial import *
 
 
-class MyRubic():
-
+class MyRubic:
     def __init__(self, cube: Cube):
         self.cube = cube
         self.moves = []
@@ -20,10 +19,18 @@ class MyRubic():
     def fitness_1(self):
         cube_str = self.cube2str()
         cnt = 0
-        M = flatten(slices_stage0)
+        # for idx, ss in enumerate(slices_stage0):
+        # for s in ss:
+        # if cube_str[s] not in available_colors_stage0[idx]:
+        # cnt += 1
 
-        for i in range(len(M)):
-            cnt += int(cube_str[M[i]] not in available_colors_stage0[:])
+        for idx in range(len(slices_stage00)):
+            if cube_str[slices_stage00[idx]] not in available_colors_stage00:
+                cnt += 1
+
+        for idx in range(len(slices_stage01)):
+            if cube_str[slices_stage01[idx]] not in available_colors_stage01:
+                cnt += 1
 
         if cnt == 0:
             self.good_state1 = True
@@ -37,10 +44,17 @@ class MyRubic():
         cube_str = self.cube2str()
         cnt = 0
 
-        M = flatten(slices_stage1)
+        for idx in range(len(slices_stage10)):
+            if cube_str[slices_stage10[idx]] not in available_colors_stage10:
+                cnt += 1
 
-        for i in range(len(M)):
-            cnt += int(cube_str[M[i]] not in available_colors_stage1[:])
+        for idx in range(len(slices_stage11)):
+            if cube_str[slices_stage11[idx]] not in available_colors_stage11:
+                cnt += 1
+
+        for idx in range(len(slices_stage12)):
+            if cube_str[slices_stage12[idx]] not in available_colors_stage12:
+                cnt += 1
 
         if cnt == 0:
             self.good_state2 = True
@@ -55,12 +69,9 @@ class MyRubic():
         cube_str = self.cube2str()
         x = 0
         for s in range(len(slices_stage2[0])):
-            cond1 = cube_str[slices_stage2[0][s]
-                             ] not in available_colors_stage2[0]
-            cond2 = cube_str[slices_stage2[1][s]
-                             ] not in available_colors_stage2[1]
-            cond3 = cube_str[slices_stage2[2][s]
-                             ] not in available_colors_stage2[2]
+            cond1 = cube_str[slices_stage2[0][s]] not in available_colors_stage2[0]
+            cond2 = cube_str[slices_stage2[1][s]] not in available_colors_stage2[1]
+            cond3 = cube_str[slices_stage2[2][s]] not in available_colors_stage2[2]
             if cond1 or cond2 or cond3:
                 x += 1
         y = 0
@@ -107,35 +118,35 @@ class MyRubic():
     def cube2str(self):
         return str(self.cube).replace(" ", "").replace("\n", "")
 
-    def make_move(self,  move):
-        if (move == 'L'):
+    def make_move(self, move):
+        if move == "L":
             self.cube.L()
-        elif (move == 'U'):
+        elif move == "U":
             self.cube.U()
-        elif (move == 'B'):
+        elif move == "B":
             self.cube.B()
-        elif (move == 'F'):
+        elif move == "F":
             self.cube.F()
-        elif (move == 'D'):
+        elif move == "D":
             self.cube.D()
-        elif (move == 'R'):
+        elif move == "R":
             self.cube.R()
-        elif (move == 'L2'):
+        elif move == "L2":
             self.cube.L()
             self.cube.L()
-        elif (move == 'D2'):
+        elif move == "D2":
             self.cube.D()
             self.cube.D()
-        elif (move == 'B2'):
+        elif move == "B2":
             self.cube.B()
             self.cube.B()
-        elif (move == 'R2'):
+        elif move == "R2":
             self.cube.R()
             self.cube.R()
-        elif (move == 'U2'):
+        elif move == "U2":
             self.cube.U()
             self.cube.U()
-        elif (move == 'F2'):
+        elif move == "F2":
             self.cube.F()
             self.cube.F()
 
