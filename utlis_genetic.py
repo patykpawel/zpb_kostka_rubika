@@ -23,7 +23,7 @@ def genrate_moves(moves, number):
     return end_moves
 
 
-def population_ready(population: 'list[MyRubic]', no_stage):
+def population_ready(population: list[MyRubic], no_stage):
     all_ready = True
     for p in population:
         if no_stage == 0 and p.good_state1 == False:
@@ -52,7 +52,7 @@ def generate_population(parents, no_population):
     return children
 
 
-def choose_parent(population: 'list[MyRubic]'):
+def choose_parent(population: list[MyRubic]):
     state_list = []
     parents = []
     for p in population:
