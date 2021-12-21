@@ -13,13 +13,6 @@ def genrate_moves(moves, number):
     for i in range(number):
         idx = random.randint(0, len(moves) - 1)
         end_moves.append(moves[idx])
-
-    # new_moves = []
-    # for m in moves:
-    #     if end_moves.count(m) % 4 == 0:
-    #         new_moves = [i for i in end_moves if i != m]
-
-    #     end_moves = new_moves
     return end_moves
 
 
@@ -68,37 +61,6 @@ def choose_parent(population: 'list[MyRubic]'):
             state_list.append(p.cube2str)
 
     return parents
-
-# def selection_rulette(population: List[MyRubic], no_parents):
-#     all_fitness = [p.fitness for p in population]
-#     sum_fitness = sum(all_fitness) * 1.0
-
-#     propability_all = [1 - (1.0 * f / sum_fitness) for f in all_fitness]
-#     propability_all = [(1 - (1.0 * f / sum_fitness)) /
-#                        sum(propability_all) for f in all_fitness]
-
-#     roulette = []
-#     temp = 0
-#     for i, p in enumerate(propability_all):
-#         if i == 0:
-#             roulette.append([0, p])
-#         elif i == len(propability_all)-1:
-#             roulette.append([temp, 1])
-#         else:
-#             roulette.append([temp, temp+p])
-
-#         temp += p
-#     # print(propability_all[:3])
-
-#     shots = [random.random() for i in range(no_parents)]
-#     parents = []
-#     for shot in shots:
-#         for i, val_list in enumerate(roulette):
-#             if val_list[0] <= shot < val_list[1]:
-#                 parents.append(deepcopy(population[i]))
-#                 break
-
-#     return parents
 
 
 def selection(population, no_parents, mode="tournament"):
