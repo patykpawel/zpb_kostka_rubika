@@ -1,9 +1,10 @@
-python3 main_test_env.py WOGWWORYWGIYBRRBGYRYOGOWBGBYRBOBWOBYBGRGROBRYOYWRYGGWW 10 10 10 100 best testing.json
+python main_test_env.py WOGWWORYWGOYBRRBGYRYOGOWBGBYRBOBWOBYBGRGROBRYOYWRYGGWW 20 5 250 10 100 best testing.json
 
 arg1 - startowy string
 arg2 - liczba testów
-arg3 - liczba generacji na test
-arg4 - liczba rodziców
-arg5 - wielkość populacji
-arg6 - metoda selekcji
-arg7 - nazwa pliku .json, w którym należy zapisać dane
+arg3 - maksymalna liczba hipermutacji
+arg4 - liczba generacji na test
+arg5 - liczba rodziców
+arg6 - wielkość populacji
+arg7 - metoda selekcji
+arg8 - nazwa pliku .json, w którym należy zapisać dane
