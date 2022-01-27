@@ -6,6 +6,7 @@ from utlis_genetic import *
 from copy import deepcopy
 import random
 import numpy as np
+import json
 
 # badanie:
 # max ilość generacji na stage
@@ -27,7 +28,16 @@ import numpy as np
 
 
 # strategia mi-lambda - rozmiar populacji, rodzicow
+
+with open('pruning_tables.json') as json_file:
+    data = json.load(json_file)
+MyRubic.stage4_pruning_table = data["stage4"]
+MyRubic.stage3_pruning_corners = data["stage3_corners"]
+
 start_stage = state_stage0
+max_per_generation = 200
+no_parents = 10
+no_population = 100
 
 
 def run(generation):
@@ -65,7 +75,8 @@ def run(generation):
                         no_moves = random.randint(1, max_moves_stage2)
 
                         moves = genrate_moves(stage2_moves, no_moves)
-                        moves = cube.make_moves(moves, stage)
+                        moves = cube.make_moves(
+                            moves, stage)
                         cube.moves += moves
 
                 elif stage == 3:
@@ -73,7 +84,8 @@ def run(generation):
                         no_moves = random.randint(1, max_moves_stage3)
 
                         moves = genrate_moves(stage3_moves, no_moves)
-                        moves = cube.make_moves(moves, stage)
+                        moves = cube.make_moves(
+                            moves, stage)
                         cube.moves += moves
                 elif stage == 4:
                     print(cube.cube)
